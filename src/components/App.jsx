@@ -31,6 +31,11 @@ export class App extends Component {
     }));
   };
 
+  deleteContact = id =>
+    this.setState(({ contacts }) => ({
+      contacts: contacts.filter(contact => contact.id !== id),
+    }));
+
   getFiltered = () =>
     this.state.contacts.filter(({ name }) =>
       name.toLocaleLowerCase().includes(this.state.filter.toLocaleLowerCase())
@@ -43,7 +48,8 @@ export class App extends Component {
         style={{
           height: '100vh',
           display: 'flex',
-          flexDirection: 'column',
+          // flexDirection: 'column',
+          gap: '120px',
           justifyContent: 'center',
           alignItems: 'center',
           fontSize: 40,
@@ -56,7 +62,10 @@ export class App extends Component {
 
         <Section title="Contacts">
           <Filter value={this.state.filter} handleFilter={this.handleFilter} />
-          <Contacts contacts={this.getFiltered()} />
+          <Contacts
+            contacts={this.getFiltered()}
+            handleDelete={this.deleteContact}
+          />
         </Section>
       </div>
     );

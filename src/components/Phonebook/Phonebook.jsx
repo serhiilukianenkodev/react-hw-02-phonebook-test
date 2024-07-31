@@ -1,5 +1,3 @@
-import PropTypes from 'prop-types';
-
 import css from './Phonebook.module.css';
 import { Component } from 'react';
 
